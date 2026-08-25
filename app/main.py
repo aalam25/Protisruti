@@ -1,6 +1,7 @@
 import streamlit as st
 
 from ai_assistant import ask_ai
+from study_planner import create_study_plan
 
 
 st.set_page_config(
@@ -67,3 +68,70 @@ if st.button("Ask Protisruti"):
                 )
 
                 st.write(error)
+
+
+
+# Study Planner
+st.header("📚 Study Planner")
+
+st.write(
+    """
+    Create a simple personalized study plan based on your
+    learning goal, current level, available time, and target duration.
+    """
+)
+
+
+learning_goal = st.text_input(
+    "What do you want to learn?",
+    placeholder="Example: Python"
+)
+
+
+skill_level = st.selectbox(
+    "What is your current level?",
+    [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+    ]
+)
+
+
+study_time = st.selectbox(
+    "How much time can you study each day?",
+    [
+        "30 minutes",
+        "1 hour",
+        "2 hours",
+        "3+ hours"
+    ]
+)
+
+
+duration = st.number_input(
+    "How many weeks do you want to study?",
+    min_value=1,
+    max_value=52,
+    value=4
+)
+
+
+if st.button("Create Study Plan"):
+
+    if not learning_goal.strip():
+
+        st.warning("Please enter something you want to learn.")
+
+    else:
+
+        plan = create_study_plan(
+            learning_goal,
+            skill_level,
+            study_time,
+            duration
+        )
+
+        st.subheader("Your Study Plan")
+
+        st.write(plan)
