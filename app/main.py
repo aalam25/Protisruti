@@ -1,7 +1,8 @@
 import streamlit as st
 
+from ai_assistant import ask_ai
 
-# Page configuration
+
 st.set_page_config(
     page_title="Protisruti",
     page_icon="🌱",
@@ -9,60 +10,60 @@ st.set_page_config(
 )
 
 
-# Application title
 st.title("🌱 Protisruti")
 
 st.subheader("Learning, Skills, and Opportunities")
 
-
-# Introduction
 st.write(
     """
-    Protisruti is an educational and empowerment platform designed to
-    support women and children through personalized learning, skill
-    development, educational guidance, and access to opportunities.
+    Protisruti is an educational and empowerment platform designed
+    to support women and children through personalized learning,
+    skill development, educational guidance, and access to
+    opportunities.
     """
 )
 
 
-# User type
-st.header("Who are you?")
+# AI Learning Companion
+st.header("🤖 AI Learning Companion")
 
-user_type = st.selectbox(
-    "Please select your user type:",
-    [
-        "Student / Child",
-        "Woman"
-    ]
+st.write(
+    """
+    Ask Protisruti a question about something you are learning.
+    The AI Learning Companion will provide a simple explanation.
+    """
 )
 
 
-# Learning goal
-st.header("What would you like to learn?")
-
-learning_goal = st.selectbox(
-    "Choose a learning goal:",
-    [
-        "Academic Learning",
-        "English",
-        "Digital Skills",
-        "Programming",
-        "Communication Skills",
-        "Career Preparation",
-        "Other"
-    ]
+question = st.text_area(
+    "What would you like to learn?",
+    placeholder="Example: Explain photosynthesis in simple words."
 )
 
 
-# Continue button
-if st.button("Start Learning"):
+if st.button("Ask Protisruti"):
 
-    st.success(
-        f"Welcome to Protisruti! "
-        f"You selected {user_type} and your goal is {learning_goal}."
-    )
+    if not question.strip():
 
-    st.info(
-        "More personalized learning features will be added as the "
-        "Protisruti project develops."
-    )
+        st.warning("Please enter a question first.")
+
+    else:
+
+        with st.spinner("Protisruti is thinking..."):
+
+            try:
+
+                answer = ask_ai(question)
+
+                st.subheader("Protisruti's Answer")
+
+                st.write(answer)
+
+            except Exception as error:
+
+                st.error(
+                    "Something went wrong while connecting "
+                    "to the AI service."
+                )
+
+                st.write(error)
