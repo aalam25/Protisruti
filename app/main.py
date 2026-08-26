@@ -2,6 +2,7 @@ import streamlit as st
 
 from ai_assistant import ask_ai
 from study_planner import create_study_plan
+from quiz_generator import get_quiz
 
 
 st.set_page_config(
@@ -10,6 +11,9 @@ st.set_page_config(
     layout="wide"
 )
 
+
+
+# PROTISRUTI HOME
 
 st.title("🌱 Protisruti")
 
@@ -25,7 +29,8 @@ st.write(
 )
 
 
-# AI Learning Companion
+# AI LEARNING COMPANION
+
 st.header("🤖 AI Learning Companion")
 
 st.write(
@@ -63,15 +68,15 @@ if st.button("Ask Protisruti"):
             except Exception as error:
 
                 st.error(
-                    "Something went wrong while connecting "
-                    "to the AI service."
+                    "Something went wrong while processing your question."
                 )
 
                 st.write(error)
 
 
 
-# Study Planner
+# STUDY PLANNER
+
 st.header("📚 Study Planner")
 
 st.write(
@@ -135,3 +140,311 @@ if st.button("Create Study Plan"):
         st.subheader("Your Study Plan")
 
         st.write(plan)
+
+
+
+# QUIZ GENERATOR
+
+st.header("📝 Quiz Generator")
+
+st.write(
+    """
+    Test your knowledge with a practice quiz.
+    Choose a subject, topic, difficulty level, and number of questions.
+    """
+)
+
+
+quiz_subject = st.selectbox(
+    "Choose a subject:",
+    [
+        "Python",
+        "Mathematics",
+        "English"
+    ],
+    key="quiz_subject"
+)
+
+
+if quiz_subject == "Python":
+
+    quiz_topic = st.selectbox(
+        "Choose a topic:",
+        [
+            "Functions"
+        ],
+        key="python_topic"
+    )
+
+elif quiz_subject == "Mathematics":
+
+    quiz_topic = st.selectbox(
+        "Choose a topic:",
+        [
+            "Basic Arithmetic"
+        ],
+        key="math_topic"
+    )
+
+else:
+
+    quiz_topic = st.selectbox(
+        "Choose a topic:",
+        [
+            "Grammar"
+        ],
+        key="english_topic"
+    )
+
+
+quiz_difficulty = st.selectbox(
+    "Choose difficulty:",
+    [
+        "Beginner",
+        "Intermediate",
+        "Advanced"
+    ],
+    key="quiz_difficulty"
+)
+
+
+quiz_number = st.number_input(
+    "Number of questions:",
+    min_value=1,
+    max_value=5,
+    value=3,
+    step=1,
+    key="quiz_number"
+)
+
+
+
+# START QUIZ
+
+if st.button("Start Quiz"):
+
+    quiz = get_quiz(
+        quiz_subject,
+        quiz_topic,
+        quiz_difficulty,
+        quiz_number
+    )
+
+    if not quiz:
+
+        st.error(
+            "No questions are currently available "
+            "for this subject and topic."
+        )
+
+    else:
+
+        st.session_state.quiz = quiz
+
+        st.session_state.quiz_answers = {}
+
+        st.session_state.quiz_submitted = False
+
+        # Remove old selections from previous quiz
+        for key in list(st.session_state.keys()):
+
+            if key.startswith("question_"):
+
+                del st.session_state[key]
+
+        st.rerun()
+
+
+
+# DISPLAY QUIZ
+
+if "quiz" in st.session_state:
+
+    st.subheader("Your Quiz")
+
+    for index, question in enumerate(
+        st.session_state.quiz
+    ):
+
+        st.write(
+            f"### Question {index + 1}"
+        )
+
+        st.write(question["question"])
+
+        # Add an empty option at the beginning.
+        # This prevents the first real answer from
+        # being selected automatically.
+
+        options = [
+            "Select an answer"
+        ] + question["options"]
+
+        selected_answer = st.radio(
+            "Choose your answer:",
+            options,
+            index=0,
+            key=f"question_{index}"
+        )
+
+        if selected_answer != "Select an answer":
+
+            st.session_state.quiz_answers[index] = (
+                selected_answer
+            )
+
+        else:
+
+            # Remove the answer if the user returns
+            # to the default selection.
+
+            if index in st.session_state.quiz_answers:
+
+                del st.session_state.quiz_answers[index]
+
+
+    
+    # SUBMIT QUIZ
+
+    if st.button("Submit Quiz"):
+
+        unanswered = []
+
+        for index in range(
+            len(st.session_state.quiz)
+        ):
+
+            if index not in st.session_state.quiz_answers:
+
+                unanswered.append(index + 1)
+
+
+        if unanswered:
+
+            question_numbers = ", ".join(
+                map(str, unanswered)
+            )
+
+            st.warning(
+                "Please answer all questions before "
+                f"submitting. Unanswered question(s): "
+                f"{question_numbers}"
+            )
+
+        else:
+
+            score = 0
+
+            for index, question in enumerate(
+                st.session_state.quiz
+            ):
+
+                user_answer = (
+                    st.session_state.quiz_answers[index]
+                )
+
+                if user_answer == question["answer"]:
+
+                    score += 1
+
+
+            total = len(
+                st.session_state.quiz
+            )
+
+            percentage = (
+                score / total
+            ) * 100
+
+
+            st.session_state.quiz_submitted = True
+
+
+            
+            # RESULT
+        
+            st.subheader("🎯 Quiz Result")
+
+            st.write(
+                f"You scored **{score} out of {total}**."
+            )
+
+            st.write(
+                f"Your score is **{percentage:.0f}%**."
+            )
+
+
+            if percentage >= 80:
+
+                st.success(
+                    "Excellent work! Keep learning and practicing."
+                )
+
+            elif percentage >= 60:
+
+                st.info(
+                    "Good job! Review the questions you missed."
+                )
+
+            else:
+
+                st.warning(
+                    "Keep practicing. You can improve with more study."
+                )
+
+
+            
+            # ANSWER EXPLANATIONS
+
+            st.subheader("📖 Answer Explanations")
+
+
+            for index, question in enumerate(
+                st.session_state.quiz
+            ):
+
+                user_answer = (
+                    st.session_state.quiz_answers[index]
+                )
+
+
+                if user_answer == question["answer"]:
+
+                    st.success(
+                        f"Question {index + 1}: Correct"
+                    )
+
+                else:
+
+                    st.error(
+                        f"Question {index + 1}: Incorrect"
+                    )
+
+                    st.write(
+                        f"Correct answer: "
+                        f"{question['answer']}"
+                    )
+
+
+                st.write(
+                    question["explanation"]
+                )
+
+
+    
+    # RETAKE QUIZ
+
+    if st.session_state.get(
+        "quiz_submitted",
+        False
+    ):
+
+        if st.button("🔄 Take Another Quiz"):
+
+            del st.session_state["quiz"]
+
+            st.session_state.quiz_answers = {}
+
+            st.session_state.quiz_submitted = False
+
+            st.rerun()
