@@ -77,23 +77,68 @@ if st.button("Ask Protisruti"):
 
 
 
+# ============================================================
 # STUDY PLANNER
+# ============================================================
 
 st.header("📚 Study Planner")
 
 st.write(
     """
-    Create a simple personalized study plan based on your
-    learning goal, current level, available time, and target duration.
+    Create a personalized study plan based on what you want
+    to learn right now. Your profile can help Protisruti
+    understand your broader goals, but you can choose a
+    different subject whenever you want.
     """
 )
 
 
+# ------------------------------------------------------------
+# PROFILE INFORMATION
+# ------------------------------------------------------------
+
+if "profile" in st.session_state:
+
+    profile = st.session_state.profile
+
+    st.success(
+        f"Welcome back, {profile['name']}!"
+    )
+
+    st.write(
+        f"**Your broader goal:** "
+        f"{profile['learning_goal']}"
+    )
+
+    st.caption(
+        "You can choose any subject you want to study below."
+    )
+
+else:
+
+    st.info(
+        """
+        You have not created a profile yet.
+
+        You can still create a study plan by choosing
+        something you want to learn below.
+        """
+    )
+
+
+# ------------------------------------------------------------
+# CURRENT LEARNING GOAL
+# ------------------------------------------------------------
+
 learning_goal = st.text_input(
-    "What do you want to learn?",
+    "What do you want to learn right now?",
     placeholder="Example: Python"
 )
 
+
+# ------------------------------------------------------------
+# SKILL LEVEL
+# ------------------------------------------------------------
 
 skill_level = st.selectbox(
     "What is your current level?",
@@ -104,6 +149,10 @@ skill_level = st.selectbox(
     ]
 )
 
+
+# ------------------------------------------------------------
+# STUDY TIME
+# ------------------------------------------------------------
 
 study_time = st.selectbox(
     "How much time can you study each day?",
@@ -116,6 +165,10 @@ study_time = st.selectbox(
 )
 
 
+# ------------------------------------------------------------
+# STUDY DURATION
+# ------------------------------------------------------------
+
 duration = st.number_input(
     "How many weeks do you want to study?",
     min_value=1,
@@ -124,11 +177,17 @@ duration = st.number_input(
 )
 
 
+# ------------------------------------------------------------
+# CREATE STUDY PLAN
+# ------------------------------------------------------------
+
 if st.button("Create Study Plan"):
 
     if not learning_goal.strip():
 
-        st.warning("Please enter something you want to learn.")
+        st.warning(
+            "Please enter what you want to learn."
+        )
 
     else:
 
@@ -139,11 +198,11 @@ if st.button("Create Study Plan"):
             duration
         )
 
-        st.subheader("Your Study Plan")
+        st.subheader(
+            "Your Personalized Study Plan"
+        )
 
         st.write(plan)
-
-
 
 # QUIZ GENERATOR
 
