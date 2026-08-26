@@ -3,6 +3,7 @@ import streamlit as st
 from ai_assistant import ask_ai
 from study_planner import create_study_plan
 from quiz_generator import get_quiz
+from resources import get_resources
 
 
 st.set_page_config(
@@ -448,3 +449,66 @@ if "quiz" in st.session_state:
             st.session_state.quiz_submitted = False
 
             st.rerun()
+
+
+
+# RESOURCE CENTER
+
+st.header("🌸 Resource Center")
+
+st.write(
+    """
+    Explore learning, skills, opportunities, and safety resources
+    designed to support women and children.
+    """
+)
+
+
+resource_category = st.selectbox(
+    "Choose a resource category:",
+    [
+        "🌸 Women's Education",
+        "📚 Children's Learning",
+        "💼 Skills & Career",
+        "🎓 Scholarships & Opportunities",
+        "🛡️ Safety & Well-being"
+    ]
+)
+
+
+if st.button("Explore Resources"):
+
+    selected_resources = get_resources(
+        resource_category
+    )
+
+
+    if not selected_resources:
+
+        st.warning(
+            "No resources are currently available "
+            "for this category."
+        )
+
+    else:
+
+        st.subheader(
+            f"Resources: {resource_category}"
+        )
+
+
+        for resource in selected_resources:
+
+            st.markdown(
+                f"### {resource['title']}"
+            )
+
+            st.write(
+                resource["description"]
+            )
+
+            st.caption(
+                f"Resource type: {resource['type']}"
+            )
+
+            st.divider()
