@@ -4,6 +4,7 @@ from ai_assistant import ask_ai
 from study_planner import create_study_plan
 from quiz_generator import get_quiz
 from resources import get_resources
+from user_profile import create_profile, get_profile_summary
 
 
 st.set_page_config(
@@ -512,3 +513,127 @@ if st.button("Explore Resources"):
             )
 
             st.divider()
+
+
+
+# USER PROFILE
+
+st.header("👤 User Profile")
+
+st.write(
+    """
+    Create a profile so Protisruti can better understand
+    your learning needs and goals.
+    """
+)
+
+
+profile_name = st.text_input(
+    "Your name:",
+    placeholder="Example: Ayesha"
+)
+
+
+profile_age_group = st.selectbox(
+    "Age group:",
+    [
+        "Child",
+        "Teenager",
+        "Young Adult",
+        "Adult"
+    ]
+)
+
+
+profile_user_type = st.selectbox(
+    "I am:",
+    [
+        "Girl",
+        "Woman",
+        "Parent/Guardian",
+        "Teacher/Educator"
+    ]
+)
+
+
+profile_education = st.selectbox(
+    "Education level:",
+    [
+        "Elementary School",
+        "Middle School",
+        "High School",
+        "College/University",
+        "Other"
+    ]
+)
+
+
+profile_interests = st.multiselect(
+    "What are you interested in learning?",
+    [
+        "Computer Skills",
+        "Programming",
+        "Mathematics",
+        "English",
+        "Science",
+        "Financial Literacy",
+        "Career Skills",
+        "Creative Skills"
+    ]
+)
+
+
+profile_goal = st.text_input(
+    "What is your main learning goal?",
+    placeholder="Example: I want to learn Python."
+)
+
+
+if st.button("Create My Profile"):
+
+    if not profile_name.strip():
+
+        st.warning("Please enter your name.")
+
+    elif not profile_interests:
+
+        st.warning(
+            "Please select at least one learning interest."
+        )
+
+    elif not profile_goal.strip():
+
+        st.warning(
+            "Please enter your learning goal."
+        )
+
+    else:
+
+        profile = create_profile(
+            profile_name,
+            profile_age_group,
+            profile_user_type,
+            profile_education,
+            profile_interests,
+            profile_goal
+        )
+
+        st.session_state.profile = profile
+
+        st.success(
+            "Your Protisruti profile has been created!"
+        )
+
+
+
+# DISPLAY PROFILE
+
+if "profile" in st.session_state:
+
+    st.subheader("Your Profile")
+
+    profile_summary = get_profile_summary(
+        st.session_state.profile
+    )
+
+    st.markdown(profile_summary)
