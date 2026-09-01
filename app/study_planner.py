@@ -1,187 +1,197 @@
+# ============================================================
+# PROTISRUTI STUDY PLANNER
+# ============================================================
+
+
 def create_study_plan(
     learning_goal,
     skill_level,
     study_time,
-    duration
+    duration,
+    profile=None
 ):
     """
     Create a personalized study plan.
 
-    This is the local development version.
-    A real AI model can be connected later.
+    The user's profile is optional.
+    If available, it can provide additional context
+    about the learner's interests and broader goal.
     """
 
-    goal = learning_goal.lower()
+    # ========================================================
+    # BASIC INFORMATION
+    # ========================================================
 
-    if "python" in goal:
+    learning_goal = learning_goal.strip()
 
-        if duration <= 4:
 
-            plan = f"""
-🌱 Python Learning Plan
+    # ========================================================
+    # PROFILE INFORMATION
+    # ========================================================
 
-Goal: {learning_goal}
-Level: {skill_level}
-Study Time: {study_time}
-Duration: {duration} weeks
+    profile_goal = ""
 
-Week 1 — Python Basics
-- Variables
-- Data types
-- print()
-- Basic operators
-- Simple exercises
+    interests = []
 
-Week 2 — Conditions and Loops
-- if / elif / else
-- for loops
-- while loops
-- Practice problems
 
-Week 3 — Functions and Data Structures
-- Functions
-- Lists
-- Tuples
-- Dictionaries
-- Sets
+    if profile:
 
-Week 4 — Mini Project
-- Build a small Python project
-- Practice debugging
-- Review previous topics
-- Complete a final project
+        profile_goal = profile.get(
+            "learning_goal",
+            ""
+        )
 
-Study Recommendation:
-Try to study consistently and practice by writing code yourself.
+        interests = profile.get(
+            "interests",
+            []
+        )
+
+
+    # ========================================================
+    # CREATE PLAN
+    # ========================================================
+
+    plan = f"""
+# 📚 Personalized Study Plan
+
+## 🎯 Learning Goal
+
+**{learning_goal}**
+
+## 📊 Current Level
+
+**{skill_level}**
+
+## ⏰ Daily Study Time
+
+**{study_time}**
+
+## 🗓️ Study Duration
+
+**{duration} weeks**
+
 """
+
+
+    # ========================================================
+    # PROFILE CONNECTION
+    # ========================================================
+
+    if profile_goal:
+
+        plan += f"""
+## 👤 Your Broader Goal
+
+Your profile indicates that your broader learning goal is:
+
+**{profile_goal}**
+
+This study plan is designed to support your current
+learning goal while keeping your broader goal in mind.
+
+"""
+
+
+    # ========================================================
+    # INTERESTS
+    # ========================================================
+
+    if interests:
+
+        interest_text = ", ".join(interests)
+
+        plan += f"""
+## 🌱 Your Interests
+
+You are interested in:
+
+**{interest_text}**
+
+You can connect these interests with your current
+learning goal as you progress.
+
+"""
+
+
+    # ========================================================
+    # WEEKLY PLAN
+    # ========================================================
+
+    plan += """
+## 🗓️ Weekly Plan
+
+"""
+
+
+    for week in range(
+        1,
+        int(duration) + 1
+    ):
+
+        if week == 1:
+
+            topic = (
+                f"Introduction to {learning_goal} "
+                "and basic concepts"
+            )
+
+        elif week == 2:
+
+            topic = (
+                f"Core concepts and practical exercises "
+                f"in {learning_goal}"
+            )
+
+        elif week == 3:
+
+            topic = (
+                f"Practice, problem solving, and "
+                f"real-world applications of {learning_goal}"
+            )
 
         else:
 
-            plan = f"""
-🌱 Extended Python Learning Plan
+            topic = (
+                f"Review, projects, and advanced practice "
+                f"related to {learning_goal}"
+            )
 
-Goal: {learning_goal}
-Level: {skill_level}
-Study Time: {study_time}
-Duration: {duration} weeks
 
-Weeks 1–2
-Python fundamentals
+        plan += f"""
+### Week {week}
 
-Weeks 3–4
-Conditions and loops
+**Focus:** {topic}
 
-Weeks 5–6
-Functions and data structures
+**Daily Study Time:** {study_time}
 
-Weeks 7–8
-File handling and error handling
+**Suggested Activities:**
 
-Weeks 9–10
-Object-oriented programming
+- Learn the main concepts.
+- Take notes on important ideas.
+- Practice what you learned.
+- Complete small exercises.
+- Review previous material.
+- Ask Protisruti questions when you need help.
 
-Weeks 11–12
-Build a practical Python project
-
-Remaining weeks:
-Review, practice, and improve your project.
 """
 
-    elif "english" in goal:
 
-        plan = f"""
-🌱 English Learning Plan
+    # ========================================================
+    # FINAL ADVICE
+    # ========================================================
 
-Goal: {learning_goal}
-Level: {skill_level}
-Study Time: {study_time}
-Duration: {duration} weeks
+    plan += """
+## 💡 Study Tips
 
-Week 1
-- Basic vocabulary
-- Common expressions
-- Simple sentences
+- Study consistently rather than trying to learn everything at once.
+- Practice what you learn.
+- Review difficult topics regularly.
+- Use quizzes to measure your progress.
+- Ask the AI Learning Companion when you need an explanation.
+- Celebrate small improvements.
 
-Week 2
-- Grammar fundamentals
-- Present, past, and future tense
-
-Week 3
-- Reading practice
-- Short passages
-- Vocabulary building
-
-Week 4
-- Writing practice
-- Conversation practice
-- Review
-
-Study Recommendation:
-Practice speaking, reading, writing, and listening every day.
+🌱 Keep learning step by step. Progress takes time.
 """
 
-    elif "math" in goal or "mathematics" in goal:
-
-        plan = f"""
-🌱 Mathematics Learning Plan
-
-Goal: {learning_goal}
-Level: {skill_level}
-Study Time: {study_time}
-Duration: {duration} weeks
-
-Week 1
-- Number systems
-- Basic arithmetic
-- Fractions
-
-Week 2
-- Percentages
-- Ratios
-- Proportions
-
-Week 3
-- Algebra basics
-- Equations
-- Variables
-
-Week 4
-- Word problems
-- Practice exercises
-- Review
-
-Study Recommendation:
-Practice several problems every day and review mistakes carefully.
-"""
-
-    else:
-
-        plan = f"""
-🌱 Personalized Learning Plan
-
-Goal: {learning_goal}
-Level: {skill_level}
-Study Time: {study_time}
-Duration: {duration} weeks
-
-Week 1
-- Introduction to the topic
-- Learn the basic concepts
-
-Week 2
-- Study important concepts
-- Practice simple exercises
-
-Week 3
-- Practice intermediate concepts
-- Work on small exercises
-
-Week 4
-- Review previous topics
-- Complete a small project
-
-Study Recommendation:
-Study consistently and practice what you learn.
-"""
 
     return plan
