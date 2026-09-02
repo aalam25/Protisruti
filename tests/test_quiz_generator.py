@@ -50,3 +50,14 @@ def test_get_quiz_respects_question_count():
     )
 
     assert len(quiz) == 2
+    
+    
+def test_get_quiz_with_invalid_subject_returns_empty_list():
+    quiz = get_quiz(
+        subject="History",
+        topic="World History",
+        difficulty="Beginner",
+        number_of_questions=3
+    )
+
+    assert quiz == []
