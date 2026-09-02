@@ -1,5 +1,10 @@
 # 🌱 Protisruti
 
+![Project Status](https://img.shields.io/badge/Status-Active%20Development-blue)
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-App-red?logo=streamlit)
+![SQLite](https://img.shields.io/badge/Database-SQLite-blue?logo=sqlite)
+
 ### A Promise of Learning, Opportunity, and Empowerment
 
 Protisruti is an AI-powered educational and empowerment platform designed to support women and children through personalized learning, skill development, educational guidance, and access to opportunities.
@@ -45,6 +50,9 @@ Protisruti aims to address some of these challenges through an accessible, AI-po
 ## Application Preview
 
 ![Protisruti Dashboard](screenshots/protisruti-dashboard.png)
+
+
+Protisruti provides an interactive learning environment where users can create a profile, receive AI-assisted learning support, generate personalized study plans, practice through quizzes, access learning resources, and track their learning progress.
 
 ## 🚀 Features
 
