@@ -184,6 +184,9 @@ def get_quiz(subject, topic, difficulty, number_of_questions):
             ]
         }
     }
+    
+    if number_of_questions <= 0:
+        return []
 
     try:
         questions = quizzes[subject][topic]
