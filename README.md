@@ -42,6 +42,10 @@ Protisruti aims to address some of these challenges through an accessible, AI-po
 
 ---
 
+## Application Preview
+
+![Protisruti Dashboard](screenshots/protisruti-dashboard.png)
+
 ## 🚀 Features
 
 ### 1. 🤖 AI Learning Companion
