@@ -5,6 +5,9 @@ def ask_ai(question):
     This function is used during development while the
     real AI API is not connected.
     """
+    
+    if not question.strip():
+       return "Please enter a question so Protisruti can help you learn."
 
     question_lower = question.lower()
 

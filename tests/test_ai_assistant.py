@@ -54,3 +54,9 @@ def test_unknown_question():
     assert response is not None
     assert "Thank you for your question" in response
     assert "development version" in response
+    
+    
+def test_ask_ai_with_empty_question_returns_message():
+    response = ask_ai("")
+
+    assert response == "Please enter a question so Protisruti can help you learn."
