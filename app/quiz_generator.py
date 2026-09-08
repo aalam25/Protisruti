@@ -194,12 +194,15 @@ def get_quiz(subject, topic, difficulty, number_of_questions):
         return []
 
     if difficulty == "Beginner":
-        questions = questions[:]
+       questions = questions[:]
 
     elif difficulty == "Intermediate":
-        questions = questions[1:]
+       questions = questions[1:]
 
     elif difficulty == "Advanced":
-        questions = questions[2:]
+       questions = questions[2:]
+
+    else:
+       return []
 
     return questions[:number_of_questions]

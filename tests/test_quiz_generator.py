@@ -72,3 +72,14 @@ def test_get_quiz_with_zero_questions_returns_empty_list():
     )
 
     assert quiz == []
+    
+    
+def test_get_quiz_with_invalid_difficulty_returns_empty_list():
+    quiz = get_quiz(
+        subject="Python",
+        topic="Functions",
+        difficulty="Expert",
+        number_of_questions=3
+    )
+
+    assert quiz == []
