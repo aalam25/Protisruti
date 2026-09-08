@@ -60,3 +60,9 @@ def test_ask_ai_with_empty_question_returns_message():
     response = ask_ai("")
 
     assert response == "Please enter a question so Protisruti can help you learn."
+    
+    
+def test_ask_ai_with_whitespace_question_returns_message():
+    response = ask_ai("   ")
+
+    assert response == "Please enter a question so Protisruti can help you learn."
