@@ -65,3 +65,14 @@ def test_study_plan_uses_profile_information():
 
     assert "Build computer skills" in plan
     assert "Python, Mathematics" in plan
+    
+    
+def test_create_study_plan_with_invalid_duration_returns_message():
+    plan = create_study_plan(
+        learning_goal="Python",
+        skill_level="Beginner",
+        study_time="1 hour",
+        duration=0
+    )
+
+    assert plan == "Study duration must be greater than 0 weeks."

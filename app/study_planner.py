@@ -23,6 +23,9 @@ def create_study_plan(
     # ========================================================
 
     learning_goal = learning_goal.strip()
+    
+    if int(duration) <= 0:
+       return "Study duration must be greater than 0 weeks."
 
 
     # ========================================================
