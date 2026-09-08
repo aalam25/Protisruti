@@ -81,3 +81,16 @@ def test_create_profile_with_empty_name_returns_none():
     )
 
     assert profile is None
+    
+    
+def test_create_profile_with_whitespace_name_returns_none():
+    profile = create_profile(
+        name="   ",
+        age_group="Adult",
+        user_type="Woman",
+        education_level="College/University",
+        interests=["Computer Skills"],
+        learning_goal="Learn Python"
+    )
+
+    assert profile is None
