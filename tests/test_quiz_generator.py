@@ -83,3 +83,15 @@ def test_get_quiz_with_invalid_difficulty_returns_empty_list():
     )
 
     assert quiz == []
+    
+    
+def test_intermediate_quiz_starts_from_second_question():
+    quiz = get_quiz(
+        subject="Python",
+        topic="Functions",
+        difficulty="Intermediate",
+        number_of_questions=2
+    )
+
+    assert len(quiz) == 2
+    assert quiz[0]["question"] == "What does a Python function allow you to do?"
