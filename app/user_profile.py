@@ -31,8 +31,8 @@ def get_profile_summary(profile):
     """
 
     interests_text = ", ".join(
-        profile["interests"]
-    )
+       profile.get("interests", [])
+)
 
     summary = f"""
 ### 👤 Profile Summary

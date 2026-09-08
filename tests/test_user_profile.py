@@ -94,3 +94,18 @@ def test_create_profile_with_whitespace_name_returns_none():
     )
 
     assert profile is None
+    
+    
+def test_profile_summary_without_interests():
+    profile = {
+        "name": "Abone",
+        "age_group": "Adult",
+        "user_type": "Woman",
+        "education_level": "College/University",
+        "learning_goal": "Learn Python"
+    }
+
+    summary = get_profile_summary(profile)
+
+    assert "Abone" in summary
+    assert "Learn Python" in summary
