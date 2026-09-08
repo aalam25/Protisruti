@@ -68,3 +68,16 @@ def test_get_profile_summary():
     assert "College/University" in summary
     assert "Python, English" in summary
     assert "Improve my skills" in summary
+    
+    
+def test_create_profile_with_empty_name_returns_none():
+    profile = create_profile(
+        name="",
+        age_group="Adult",
+        user_type="Woman",
+        education_level="College/University",
+        interests=["Computer Skills"],
+        learning_goal="Learn Python"
+    )
+
+    assert profile is None

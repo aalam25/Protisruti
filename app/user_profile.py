@@ -9,6 +9,9 @@ def create_profile(
     """
     Create a user profile for Protisruti.
     """
+    
+    if not name.strip():
+        return None
 
     profile = {
         "name": name,
