@@ -1407,61 +1407,6 @@ else:
             )
             
             
-            
-# ============================================================
-# PERSONALIZED RECOMMENDATIONS
-# ============================================================
-
-st.header("💡 Personalized Recommendations")
-
-st.write(
-    """
-    Protisruti uses your profile and quiz performance
-    to suggest what you may want to learn next.
-    """
-)
-
-
-if "user_id" not in st.session_state:
-
-    st.info(
-        "Create or load a profile to receive "
-        "personalized recommendations."
-    )
-
-else:
-
-    if "profile" not in st.session_state:
-
-        st.info(
-            "Load your profile to receive "
-            "personalized recommendations."
-        )
-
-    else:
-
-        user_results = get_user_quiz_results(
-            st.session_state["user_id"]
-        )
-
-
-        recommendations = generate_recommendations(
-            st.session_state["profile"],
-            user_results
-        )
-
-
-        st.subheader(
-            "Recommended for You"
-        )
-
-
-        for recommendation in recommendations:
-
-            st.markdown(
-                f"• {recommendation}"
-            )
-
 
 # ============================================================
 # SIDEBAR USER STATUS
