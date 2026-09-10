@@ -122,7 +122,11 @@ if st.button("Ask Protisruti"):
 
             try:
 
-                answer = ask_ai(question)
+                answer = ask_ai(
+                    question,
+                    profile=st.session_state.get("profile"
+                )
+)
 
                 st.subheader(
                     "Protisruti's Answer"
