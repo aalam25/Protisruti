@@ -90,3 +90,10 @@ def test_ai_uses_profile_context():
     assert "Learn Python for AI" in result
     assert "Programming" in result
     assert "Artificial Intelligence" in result
+    
+    
+def test_ai_provides_next_learning_topic():
+    result = ask_ai("What is Python?")
+
+    assert "What to Learn Next" in result
+    assert "variables" in result.lower()

@@ -4,7 +4,7 @@ def ask_ai(question, profile=None):
 
     The user's profile is optional.
     If available, the profile can be used to personalize
-    the learning response.
+    the learning response and suggest what to learn next.
     """
 
     if not question.strip():
@@ -43,6 +43,11 @@ In simple words, plants use sunlight to turn water and carbon dioxide
 into food and oxygen.
 """
 
+        next_topic = (
+            "Learn about cellular respiration to understand how "
+            "plants and other organisms use stored energy."
+        )
+
     elif "python" in question_lower:
         answer = """
 Python is a programming language that is easy to learn and widely used
@@ -55,6 +60,11 @@ print("Hello, Protisruti!")
 
 This tells Python to display the words "Hello, Protisruti!".
 """
+
+        next_topic = (
+            "Try learning Python variables and conditional statements "
+            "next."
+        )
 
     elif "computer" in question_lower:
         answer = """
@@ -72,6 +82,11 @@ For example, when you type something on a keyboard, the computer
 receives the input, processes it, and displays the result on the screen.
 """
 
+        next_topic = (
+            "Learn about the CPU, memory, and storage to understand "
+            "how a computer processes information."
+        )
+
     elif "math" in question_lower or "mathematics" in question_lower:
         answer = """
 Mathematics is the study of numbers, quantities, patterns, shapes,
@@ -88,6 +103,11 @@ Some important areas of mathematics include:
 Mathematics helps us solve problems in everyday life, science,
 engineering, computing, and many other fields.
 """
+
+        next_topic = (
+            "Try learning basic algebra and practice solving simple "
+            "equations."
+        )
 
     else:
         answer = f"""
@@ -109,7 +129,12 @@ For now, try asking about:
 - Mathematics
 """
 
-    # Add personalized learning guidance
+        next_topic = (
+            "Choose a topic that interests you and ask Protisruti "
+            "a follow-up question."
+        )
+
+    # Personalized learning guidance
     if learning_goal:
         answer += (
             f"\n\nPersonalized Learning Tip:\n"
@@ -122,5 +147,11 @@ For now, try asking about:
             f"\nYour learning interests include: "
             f"{', '.join(interests)}."
         )
+
+    # Next learning suggestion
+    answer += (
+        f"\n\nWhat to Learn Next:\n"
+        f"{next_topic}"
+    )
 
     return answer
