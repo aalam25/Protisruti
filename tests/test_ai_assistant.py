@@ -66,3 +66,27 @@ def test_ask_ai_with_whitespace_question_returns_message():
     response = ask_ai("   ")
 
     assert response == "Please enter a question so Protisruti can help you learn."
+    
+    
+    
+def test_ai_uses_profile_context():
+    profile = {
+        "name": "Test User",
+        "age_group": "18-25",
+        "user_type": "Student",
+        "education_level": "University",
+        "interests": [
+            "Programming",
+            "Artificial Intelligence"
+        ],
+        "learning_goal": "Learn Python for AI"
+    }
+
+    result = ask_ai(
+        "What is Python?",
+        profile
+    )
+
+    assert "Learn Python for AI" in result
+    assert "Programming" in result
+    assert "Artificial Intelligence" in result

@@ -3,8 +3,8 @@ def ask_ai(question, profile=None):
     Protisruti AI Learning Companion.
 
     The user's profile is optional.
-    If available, the profile can provide additional
-    context about the learner's interests and goal.
+    If available, the profile can be used to personalize
+    the learning response.
     """
 
     if not question.strip():
@@ -12,22 +12,19 @@ def ask_ai(question, profile=None):
 
     question_lower = question.lower()
 
-    learner_context = ""
+    learning_goal = ""
+    interests = []
 
     if profile:
-        learning_goal = profile.get("learning_goal", "")
-        interests = profile.get("interests", [])
+        learning_goal = profile.get(
+            "learning_goal",
+            ""
+        )
 
-        if learning_goal:
-            learner_context += (
-                f"\nYour learning goal is: {learning_goal}"
-            )
-
-        if interests:
-            learner_context += (
-                f"\nYour learning interests are: "
-                f"{', '.join(interests)}"
-            )
+        interests = profile.get(
+            "interests",
+            []
+        )
 
     if "photosynthesis" in question_lower:
         answer = """
@@ -112,10 +109,18 @@ For now, try asking about:
 - Mathematics
 """
 
-    if learner_context:
+    # Add personalized learning guidance
+    if learning_goal:
         answer += (
-            "\n\n--- Learner Context ---"
-            f"{learner_context}"
+            f"\n\nPersonalized Learning Tip:\n"
+            f"Your current learning goal is: {learning_goal}\n"
+            f"Try connecting this topic to your goal as you continue learning."
+        )
+
+    if interests:
+        answer += (
+            f"\nYour learning interests include: "
+            f"{', '.join(interests)}."
         )
 
     return answer
