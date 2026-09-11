@@ -111,27 +111,27 @@ engineering, computing, and many other fields.
 
     else:
         answer = f"""
-Thank you for your question:
+    Thank you for your question:
 
-"{question}"
+    "{question}"
 
-This is currently the development version of Protisruti's
-AI Learning Companion.
+    Protisruti is here to support your learning journey.
 
-The local version can demonstrate the application interface and
-learning workflow. A real AI model will be connected in a later
-development stage.
+    This is currently the development version of Protisruti's
+    AI Learning Companion. A full AI model is not connected yet,
+    but you can still continue learning by asking focused questions
+    about a specific concept, example, problem, or skill.
 
-For now, try asking about:
-- Photosynthesis
-- Python
-- Computers
-- Mathematics
-"""
+    You can also ask me about:
+    - Photosynthesis
+    - Python
+    - Computers
+    - Mathematics
+    """
 
         next_topic = (
-            "Choose a topic that interests you and ask Protisruti "
-            "a follow-up question."
+            "Try asking a more specific question about a concept, "
+            "example, problem, or skill you want to understand."
         )
 
     # Personalized learning guidance
