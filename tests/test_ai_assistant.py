@@ -6,8 +6,7 @@ APP_FOLDER = PROJECT_ROOT / "app"
 
 sys.path.insert(0, str(APP_FOLDER))
 
-from ai_assistant import ask_ai
-
+from app.ai_assistant import ask_ai, get_local_response
 
 def test_photosynthesis_question():
     response = ask_ai("What is photosynthesis?")
@@ -97,3 +96,12 @@ def test_ai_provides_next_learning_topic():
 
     assert "What to Learn Next" in result
     assert "variables" in result.lower()
+    
+    
+def test_get_local_response_python():
+    response, next_topic = get_local_response(
+        "What is Python?"
+    )
+
+    assert "Python" in response
+    assert "variables" in next_topic.lower()

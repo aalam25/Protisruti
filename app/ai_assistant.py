@@ -1,30 +1,9 @@
-def ask_ai(question, profile=None):
+def get_local_response(question):
     """
-    Protisruti AI Learning Companion.
-
-    The user's profile is optional.
-    If available, the profile can be used to personalize
-    the learning response and suggest what to learn next.
+    Provide a local response for development and testing.
     """
-
-    if not question.strip():
-        return "Please enter a question so Protisruti can help you learn."
 
     question_lower = question.lower()
-
-    learning_goal = ""
-    interests = []
-
-    if profile:
-        learning_goal = profile.get(
-            "learning_goal",
-            ""
-        )
-
-        interests = profile.get(
-            "interests",
-            []
-        )
 
     if "photosynthesis" in question_lower:
         answer = """
@@ -111,28 +90,59 @@ engineering, computing, and many other fields.
 
     else:
         answer = f"""
-    Thank you for your question:
+Thank you for your question:
 
-    "{question}"
+"{question}"
 
-    Protisruti is here to support your learning journey.
+Protisruti is here to support your learning journey.
 
-    This is currently the development version of Protisruti's
-    AI Learning Companion. A full AI model is not connected yet,
-    but you can still continue learning by asking focused questions
-    about a specific concept, example, problem, or skill.
+This is currently the development version of Protisruti's
+AI Learning Companion. A full AI model is not connected yet,
+but you can still continue learning by asking focused questions
+about a specific concept, example, problem, or skill.
 
-    You can also ask me about:
-    - Photosynthesis
-    - Python
-    - Computers
-    - Mathematics
-    """
+You can also ask me about:
+- Photosynthesis
+- Python
+- Computers
+- Mathematics
+"""
 
         next_topic = (
             "Try asking a more specific question about a concept, "
             "example, problem, or skill you want to understand."
         )
+
+    return answer, next_topic
+
+
+def ask_ai(question, profile=None):
+    """
+    Protisruti AI Learning Companion.
+
+    The user's profile is optional.
+    If available, the profile can be used to personalize
+    the learning response and suggest what to learn next.
+    """
+
+    if not question.strip():
+        return "Please enter a question so Protisruti can help you learn."
+
+    learning_goal = ""
+    interests = []
+
+    if profile:
+        learning_goal = profile.get(
+            "learning_goal",
+            ""
+        )
+
+        interests = profile.get(
+            "interests",
+            []
+        )
+
+    answer, next_topic = get_local_response(question)
 
     # Personalized learning guidance
     if learning_goal:
