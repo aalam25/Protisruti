@@ -205,3 +205,25 @@ def test_get_local_response_data_science():
     assert "Data science" in response
     assert "data analysis" in response.lower()
     assert "pandas" in next_topic.lower()
+    
+    
+    
+def test_ai_matches_data_science_to_user_interest():
+    profile = {
+        "name": "Test User",
+        "age_group": "18-25",
+        "user_type": "Student",
+        "education_level": "University",
+        "interests": [
+            "Data Science"
+        ],
+        "learning_goal": "Learn data science"
+    }
+
+    result = ask_ai(
+        "What is data science?",
+        profile
+    )
+
+    assert "Connection to Your Interests" in result
+    assert "Data Science" in result
