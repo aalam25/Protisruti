@@ -45,6 +45,36 @@ This tells Python to display the words "Hello, Protisruti!".
             "next."
         )
 
+    elif (
+        "machine learning" in question_lower
+        or "artificial intelligence" in question_lower
+        or question_lower.strip() == "ai"
+    ):
+        answer = """
+Machine learning is a part of artificial intelligence that allows
+computers to learn patterns from data and make predictions or decisions.
+
+For example, a machine learning model can learn from students'
+previous exam results and use that information to predict whether
+a student may pass or fail.
+
+A simple machine learning process includes:
+
+1. Collect data
+2. Prepare the data
+3. Train a model
+4. Test the model
+5. Use the model to make predictions
+
+In simple words, machine learning helps computers learn from data
+instead of being programmed with every possible rule.
+"""
+
+        next_topic = (
+            "Learn about supervised learning and how classification "
+            "and regression models are used to make predictions."
+        )
+
     elif "computer" in question_lower:
         answer = """
 A computer is an electronic device that receives data, processes it,

@@ -183,3 +183,14 @@ def test_ai_matches_machine_learning_to_ai_interest():
 
     assert "Connection to Your Interests" in result
     assert "Artificial Intelligence" in result
+    
+    
+    
+def test_get_local_response_machine_learning():
+    response, next_topic = get_local_response(
+        "What is machine learning?"
+    )
+
+    assert "Machine learning" in response
+    assert "data" in response.lower()
+    assert "classification" in next_topic.lower()
