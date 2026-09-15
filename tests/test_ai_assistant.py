@@ -162,3 +162,24 @@ def test_ai_matches_coding_question_to_programming_interest():
 
     assert "Connection to Your Interests" in result
     assert "Programming" in result
+    
+    
+def test_ai_matches_machine_learning_to_ai_interest():
+    profile = {
+        "name": "Test User",
+        "age_group": "18-25",
+        "user_type": "Student",
+        "education_level": "University",
+        "interests": [
+            "Artificial Intelligence"
+        ],
+        "learning_goal": "Learn AI and machine learning"
+    }
+
+    result = ask_ai(
+        "What is machine learning?",
+        profile
+    )
+
+    assert "Connection to Your Interests" in result
+    assert "Artificial Intelligence" in result
