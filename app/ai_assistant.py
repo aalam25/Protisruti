@@ -100,6 +100,31 @@ information for making better decisions.
             "and how Python libraries such as pandas are used."
         )
 
+    elif "statistics" in question_lower or "statistical" in question_lower:
+        answer = """
+Statistics is the study of collecting, organizing, analyzing,
+and interpreting data.
+
+Some common statistical concepts include:
+
+- Mean
+- Median
+- Mode
+- Range
+- Standard deviation
+
+For example, we can use statistics to calculate the average exam
+score of a group of students and understand how their scores differ.
+
+In simple words, statistics helps us understand data and identify
+patterns or useful information.
+"""
+
+        next_topic = (
+            "Learn about mean, median, mode, and standard deviation "
+            "using a small dataset."
+        )
+
     elif "computer" in question_lower:
         answer = """
 A computer is an electronic device that receives data, processes it,
@@ -161,6 +186,7 @@ You can also ask me about:
 - Python
 - Machine Learning
 - Data Science
+- Statistics
 - Computers
 - Mathematics
 """

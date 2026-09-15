@@ -227,3 +227,15 @@ def test_ai_matches_data_science_to_user_interest():
 
     assert "Connection to Your Interests" in result
     assert "Data Science" in result
+    
+    
+    
+def test_get_local_response_statistics():
+    response, next_topic = get_local_response(
+        "What is statistics?"
+    )
+
+    assert "Statistics" in response
+    assert "mean" in response.lower()
+    assert "median" in response.lower()
+    assert "standard deviation" in response.lower()
