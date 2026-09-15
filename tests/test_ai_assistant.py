@@ -116,3 +116,27 @@ def test_ai_api_key_returns_none_when_not_configured(monkeypatch):
     )
 
     assert get_ai_api_key() is None
+    
+    
+    
+def test_ai_connects_question_to_user_interests():
+    profile = {
+        "name": "Test User",
+        "age_group": "18-25",
+        "user_type": "Student",
+        "education_level": "University",
+        "interests": [
+            "Programming",
+            "Artificial Intelligence"
+        ],
+        "learning_goal": "Learn Python for AI"
+    }
+
+    result = ask_ai(
+        "What is Python?",
+        profile
+    )
+
+    assert "Connection to Your Interests" in result
+    assert "Programming" in result
+    assert "Artificial Intelligence" in result

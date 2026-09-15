@@ -127,7 +127,9 @@ def ask_ai(question, profile=None):
 
     if not question.strip():
         return "Please enter a question so Protisruti can help you learn."
-
+    
+    question_lower = question.lower()
+    
     learning_goal = ""
     interests = []
 
@@ -157,6 +159,38 @@ def ask_ai(question, profile=None):
             f"\nYour learning interests include: "
             f"{', '.join(interests)}."
         )
+
+        related_interests = []
+
+        for interest in interests:
+            interest_lower = interest.lower()
+
+            if (
+                interest_lower in question_lower
+                or (
+                    interest_lower == "programming"
+                    and "python" in question_lower
+                    )
+                    or (
+                        interest_lower in [
+                            "artificial intelligence",
+                            "ai"
+                        ]
+                        and (
+                            "python" in question_lower
+                            or "machine learning" in question_lower
+                            or "ai" in question_lower
+                        )
+                    )
+                ):
+                    related_interests.append(interest)
+
+            if related_interests:
+                answer += (
+                    "\n\nConnection to Your Interests:\n"
+                    f"This topic connects with your interest in "
+                    f"{', '.join(related_interests)}."
+                )
 
     # Next learning suggestion
     answer += (
