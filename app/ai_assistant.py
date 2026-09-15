@@ -166,10 +166,15 @@ def ask_ai(question, profile=None):
             interest_lower = interest.lower()
 
             if (
-                interest_lower in question_lower
-                or (
-                    interest_lower == "programming"
-                    and "python" in question_lower
+                    interest_lower in question_lower
+                    or (
+                        interest_lower == "programming"
+                        and (
+                            "python" in question_lower
+                            or "code" in question_lower
+                            or "coding" in question_lower
+                            or "programming" in question_lower
+                        )
                     )
                     or (
                         interest_lower in [
@@ -179,6 +184,7 @@ def ask_ai(question, profile=None):
                         and (
                             "python" in question_lower
                             or "machine learning" in question_lower
+                            or "artificial intelligence" in question_lower
                             or "ai" in question_lower
                         )
                     )
