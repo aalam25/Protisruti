@@ -194,3 +194,14 @@ def test_get_local_response_machine_learning():
     assert "Machine learning" in response
     assert "data" in response.lower()
     assert "classification" in next_topic.lower()
+    
+    
+    
+def test_get_local_response_data_science():
+    response, next_topic = get_local_response(
+        "What is data science?"
+    )
+
+    assert "Data science" in response
+    assert "data analysis" in response.lower()
+    assert "pandas" in next_topic.lower()

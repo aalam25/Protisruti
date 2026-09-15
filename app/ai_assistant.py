@@ -75,6 +75,31 @@ instead of being programmed with every possible rule.
             "and regression models are used to make predictions."
         )
 
+    elif "data science" in question_lower:
+        answer = """
+Data science is the process of using data to find useful information,
+patterns, and insights.
+
+It combines several important areas, including:
+
+- Programming
+- Statistics
+- Data analysis
+- Machine learning
+- Data visualization
+
+For example, a data scientist could analyze student performance data
+to understand learning patterns and help predict future results.
+
+In simple words, data science helps us turn raw data into useful
+information for making better decisions.
+"""
+
+        next_topic = (
+            "Learn about data cleaning, exploratory data analysis, "
+            "and how Python libraries such as pandas are used."
+        )
+
     elif "computer" in question_lower:
         answer = """
 A computer is an electronic device that receives data, processes it,
@@ -134,6 +159,8 @@ about a specific concept, example, problem, or skill.
 You can also ask me about:
 - Photosynthesis
 - Python
+- Machine Learning
+- Data Science
 - Computers
 - Mathematics
 """
