@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+from app.ai_config import get_ai_api_key
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 APP_FOLDER = PROJECT_ROOT / "app"
@@ -105,3 +106,13 @@ def test_get_local_response_python():
 
     assert "Python" in response
     assert "variables" in next_topic.lower()
+    
+    
+    
+def test_ai_api_key_returns_none_when_not_configured(monkeypatch):
+    monkeypatch.delenv(
+        "OPENAI_API_KEY",
+        raising=False
+    )
+
+    assert get_ai_api_key() is None
