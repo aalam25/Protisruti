@@ -239,3 +239,25 @@ def test_get_local_response_statistics():
     assert "mean" in response.lower()
     assert "median" in response.lower()
     assert "standard deviation" in response.lower()
+    
+    
+    
+def test_ai_matches_statistics_to_user_interest():
+    profile = {
+        "name": "Test User",
+        "age_group": "18-25",
+        "user_type": "Student",
+        "education_level": "University",
+        "interests": [
+            "Statistics"
+        ],
+        "learning_goal": "Improve data analysis skills"
+    }
+
+    result = ask_ai(
+        "What is statistics?",
+        profile
+    )
+
+    assert "Connection to Your Interests" in result
+    assert "Statistics" in result
