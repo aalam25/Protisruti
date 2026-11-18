@@ -52,7 +52,7 @@ Protisruti explores how technology can help address some of these challenges thr
 
 ## Application Preview
 
-![Protisruti Dashboard](screenshots/protisruti-dashboard.png)
+![Protisruti Dashboard](./screenshots/protisruti-dashboard.png)
 
 Protisruti provides an interactive learning environment where users can create profiles, receive educational assistance, generate study plans, practice through quizzes, access resources, and track their learning progress.
 
