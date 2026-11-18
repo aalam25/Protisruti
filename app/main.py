@@ -3,6 +3,11 @@ import pandas as pd
 
 import sys
 from pathlib import Path
+project_folder = Path(__file__).resolve().parent.parent
+logo_path = project_folder / "assets" / "Protisruti_logo.png"
+
+st.image(str(logo_path), width=250)
+
 
 
 # ============================================================
@@ -58,6 +63,7 @@ st.set_page_config(
 )
 
 
+
 # ============================================================
 # INITIALIZE DATABASE
 # ============================================================
@@ -69,7 +75,7 @@ initialize_database()
 # PROTISRUTI HOME
 # ============================================================
 
-st.title("🌱 Protisruti")
+st.title("Protisruti")
 
 st.subheader(
     "Learning, Skills, and Opportunities"
