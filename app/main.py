@@ -58,7 +58,6 @@ from recommendations import generate_recommendations
 
 st.set_page_config(
     page_title="Protisruti",
-    page_icon="🌱",
     layout="wide"
 )
 
