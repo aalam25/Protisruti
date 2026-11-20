@@ -19,6 +19,13 @@ Protisruti aims to make learning more accessible and help users take meaningful 
 
 ---
 
+
+## Live Application
+
+**Try Protisruti:** https://protisruti-cudlxcps84hkcgxonffpyd.streamlit.app/
+
+
+
 ## Vision
 
 Protisruti aims to make educational guidance and learning support more accessible to women and children, particularly those who may have limited access to personalized tutoring, mentoring, educational resources, or career guidance.
