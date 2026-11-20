@@ -261,3 +261,15 @@ def test_ai_matches_statistics_to_user_interest():
 
     assert "Connection to Your Interests" in result
     assert "Statistics" in result
+    
+    
+def test_get_local_response_ai_learning_roadmap():
+    response, next_topic = get_local_response(
+        "How do I learn AI?"
+    )
+
+    assert "Learning artificial intelligence" in response
+    assert "Python programming" in response
+    assert "machine learning" in response.lower()
+    assert "statistics" in response.lower()
+    assert "data analysis" in response.lower()

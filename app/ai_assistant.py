@@ -46,6 +46,34 @@ This tells Python to display the words "Hello, Protisruti!".
         )
 
     elif (
+        "how do i learn ai" in question_lower
+        or "how can i learn ai" in question_lower
+        or "learn ai" in question_lower
+        or "learn artificial intelligence" in question_lower
+    ):
+        answer = """
+Learning artificial intelligence is easier when you build your
+knowledge step by step.
+
+A simple learning roadmap is:
+
+1. Learn Python programming
+2. Learn basic mathematics and statistics
+3. Learn data analysis
+4. Learn machine learning
+5. Practice with small projects
+6. Explore deep learning and other AI topics
+
+The most important part is regular practice. Start with small
+projects and gradually work toward more advanced problems.
+"""
+
+        next_topic = (
+            "Start with Python, basic statistics, and simple data "
+            "analysis before moving into machine learning."
+        )
+
+    elif (
         "machine learning" in question_lower
         or "artificial intelligence" in question_lower
         or question_lower.strip() == "ai"
@@ -184,6 +212,7 @@ about a specific concept, example, problem, or skill.
 You can also ask me about:
 - Photosynthesis
 - Python
+- Artificial Intelligence
 - Machine Learning
 - Data Science
 - Statistics
@@ -197,7 +226,6 @@ You can also ask me about:
         )
 
     return answer, next_topic
-
 
 def ask_ai(question, profile=None):
     """
